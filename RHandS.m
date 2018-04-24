@@ -59,7 +59,9 @@ for i = 1:Steps
         else
             Index = find(x0(j,4)<=Pos_cells,1,'first');
         end
+        
         E_part = Electric_Field(Index)*(x0(j,4)-Pos_cells(Index-1))/DeltaX+Electric_Field(Index-1)*(1-((x0(j,4)-Pos_cells(Index-1))/DeltaX));
+        disp('Eres un rision')
         [t,x] = ode45(@(t,x) Equation(x,Mass,Charge(j),Electric_Field_RHS,Frequency_RHS,Collisional_Freq,Bz,dBz,Length_dom,E_part),Tspan,x0(j,:)); 
     %Collect data
     if i == 1
